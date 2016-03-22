@@ -1,0 +1,114 @@
+% Copyright 2016 Alexander Frantsev
+% https://github.com/WhoKnowsWhoCares/EUTheme-beamer.git
+%
+% Based on Pieter Belman's ugent-beamer (https://github.com/pbelmans/ugent-beamer)
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+
+% UGent page geometry
+% \geometry{paperheight=7.5in,paperwidth=10.0in}
+% ... Hang on! As suggested in the manual, don't mess around with beamer's
+% assumed page dimensions (128mm x 96mm). Fonts, for example, do no get 
+% automatically scaled and will look tiny if the above is executed.
+% Instead, define a multiplier 12.8/(10.0*2.54) = 64/127 and adjust all
+% respective lengths.
+
+\RequirePackage{ifthen}
+
+\mode<presentation>
+
+% lengths
+\newlength\margin
+\setlength\margin{0.43cm}% 0.85cm * 64/127
+
+\newlength\bannerwidth
+\setlength\bannerwidth{11.94cm}% (10in - 2*0.85cm) * 64/127
+
+\newlength\bannertopmargin%
+\setlength\bannertopmargin{0.43cm}%  0.85cm * 64/127
+
+
+% images
+\pgfdeclareimage[width=3cm]{logo}{logoEU_07_eng}
+
+\ifbeamer@faculty
+  \pgfdeclareimage[width=\bannerwidth]{banner}{\beamer@facultyvalue-\beamer@languagevalue}
+\else
+  \pgfdeclareimage[width=\bannerwidth]{banner}{banner}
+\fi
+
+
+% headline
+\defbeamertemplate*{headline}{EUTheme}%
+{%
+  \vskip\bannertopmargin%
+  \hskip\margin%
+%   \pgfuseimage{banner}%
+}
+
+% frametitle
+\defbeamertemplate*{frametitle}{EUTheme}
+{%
+  \vskip.2cm
+  \begin{beamercolorbox}[right]{frame title}%
+    \insertframetitle%
+  \end{beamercolorbox}%
+}
+
+% footline
+\defbeamertemplate*{footline}{EUTheme}
+{%
+  \ifbeamer@footline
+    \pgftext[bottom, left, at = \pgfpoint{0.02\paperwidth}{0.02\paperwidth}]{\insertinstitute}%
+    \pgftext[bottom, at = \pgfpoint{0.5\paperwidth}{0.02\paperwidth}]{\insertauthor}%
+  \fi
+  \ifbeamer@framenumber%
+    \ifnum\c@framenumber=1\else
+      \pgftext[bottom, right, at = \pgfpoint{0.96\paperwidth}{0.02\paperwidth}]{%
+        \usebeamerfont{frame number in foot}%
+        \usebeamercolor[fg]{frame number in foot}\insertframenumber{}%
+        \ifbeamer@totalframenumber%
+          /\inserttotalframenumber%
+        \fi
+      }%
+    \fi
+  \fi%
+}%
+
+% margins
+\setbeamersize{text margin left=2\margin,%
+               text margin right=2\margin}
+
+% background
+\defbeamertemplate*{background canvas}{EUTheme}
+{%
+}
+
+\mode
+<all>
+
+% \mode<presentation>
+
+% % Frame title
+% \defbeamertemplate*{frametitle}{EUTheme}[1][]
+% {
+% \vskip1cm%
+%   \begin{beamercolorbox}[wd=\paperwidth,ht=1.2cm]{frametitle} 
+%   \begin{tikzpicture}
+%   \useasboundingbox[fill=white](0,0) rectangle(\the\paperwidth,1.2);
+%   \fill[orange] (0,0) rectangle(2.95,1.2);
+%   \fill[blue!50!cyan!80] (3.05,0) rectangle(\the\paperwidth,1.2);
+%   \ifx\insertframesubtitle\@empty%
+%       {\node[anchor=west, white,font=\large] at (3.2,0.61){\insertframetitle};}
+%       \else%
+%       {\node[anchor= west, white,font=\large] at (3.2,0.81){\insertframetitle};%
+%       \node[anchor= west, white,font=\small] at (3.2,0.41){\insertframesubtitle};}%
+%       \fi
+%   \end{tikzpicture}
+%   \end{beamercolorbox}
+% }
+
+% \mode<all>
