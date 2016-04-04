@@ -1,11 +1,15 @@
 \documentclass{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\title{There Is No Largest Prime Number}
-\date[ISPN ’80]{27th International Symposium of Prime Numbers}
-\author[Frantsev]{Frantsev Alexander \texttt{afrantev@eu.spb.ru}}
+\usepackage[russian]{babel}
 
-\usetheme{EUTheme}
+\title{Largest Prime Number}
+\subtitle{Факультет Экономики}
+\institute[EU SPb]{European University at St. Petersburg}
+\date[01.04.2016]{27th International Symposium of Prime Numbers}
+\author[Frantsev Alexander]{Frantsev Alexander \\1 year master student\\ Supervised by: Sokolov M.V.}
+
+\usetheme[language=eng]{EUTheme}
 
 \begin{document}
 
@@ -20,9 +24,9 @@
 There is no largest prime number. \end{theorem} 
 \begin{enumerate} 
 \item<1-| alert@1> Suppose $p$ were the largest prime number. 
-\item<2-> Let $q$ be the product of the first $p$ numbers. 
+\item<2-> Let $q$ be \alert{the product} of the first $p$ numbers. 
 \item<3-> Then $q+1$ is not divisible by any of them. 
-\item<1-> But $q + 1$ is greater than $1$, thus divisible by some prime
+\item<1-> But $q + 1$ is \textcolor{yelloweu}{greater than} $1$, thus divisible by some prime
 number not in the first $p$ numbers.
 \end{enumerate}
 \end{frame}

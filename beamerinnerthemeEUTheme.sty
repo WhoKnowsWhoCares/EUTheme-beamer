@@ -12,27 +12,27 @@
 
 \defbeamertemplate*{title page}{EUTheme}
 {
-  \begin{center}
-    %\pgfuseimage{logo}%
-    %\vskip1cm
-    \usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle%
-    \ifx\insertsubtitle\@empty%
-    \else%
-      \vskip2ex%
-      \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle%
-    \fi%
+    \begin{center}%
+    \vskip.2cm%
+    \begin{beamercolorbox}[wd=0.9\paperwidth,ht=1.5cm, dp=0.5cm, center]{title}%
+        \usebeamerfont{title}%
+        \usebeamercolor[fg]{title}%
+        \inserttitle%
+    \end{beamercolorbox}%
     \ifx\insertauthor\@empty%
     \else%
-      \vskip2ex%
-      \usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor%
+        \vskip2ex%
+        \usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor%
     \fi%
-    \ifx\insertinstitution\@empty%
+    \ifx\insertsubtitle\@empty%
     \else%
-      \vskip2ex%
-      \usebeamerfont{author}\usebeamercolor[fg]{author}\insertinstitute%
+        \vskip1ex%
+        \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle%
     \fi%
-  \end{center}
-  \vfill%
+    \vskip1ex%
+    \pgfuseimage{CenterLogo}%
+    \end{center}%
+    \vfill%
 }
 
 \setbeamertemplate{blocks}[rounded]

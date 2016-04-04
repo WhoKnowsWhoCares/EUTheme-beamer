@@ -10,54 +10,37 @@
 
 \mode<presentation>
 
-% \input{colors}
-
-% \ifbeamer@faculty\colorlet{ugent-faculty}{ugent-\beamer@facultyvalue}\fi
-
-% % switch between the generic yellow use of highlights or faculty specific colors
-% \ifthenelse{ \boolean{beamer@faculty} \AND \boolean{beamer@usefacultycolors} }
-% {
-%   \colorlet{ugentalert}  {ugent-faculty}
-%   \colorlet{ugentexample}{ugentblue}
-% }
-% {
-%   \colorlet{ugentalert}  {ugentyellow}
-%   \colorlet{ugentexample}{ugentblue}
-% }
-
+\input{colors}
 
 % general colors
-\setbeamercolor{structure}           {fg = ugentblue}%
-\setbeamercolor{normal text}         {fg = ugentblue}%
-\setbeamercolor{frametitle}          {fg = ugentblue}%
-\setbeamercolor{frame number in foot}{fg = ugentblue}%
-\setbeamercolor{subtitle}            {fg = ugentyellow}%
-\setbeamercolor{author}              {fg = ugentblue}%
-\setbeamercolor{alert}               {fg = ugentblue}%
-\setbeamercolor{example}             {fg = ugentblue}%
-
+\setbeamercolor{title}               {bg=yelloweu, fg=black}%
+\setbeamercolor{structure}           {fg = darkgrayeu}%
+\setbeamercolor{normal text}         {fg = darkgrayeu}%
+\setbeamercolor{subtitle}            {fg = darkgrayeu}%
+\setbeamercolor{author}              {fg = darkgrayeu}%
+\setbeamercolor{alert}               {fg = yelloweu}%
+\setbeamercolor{example}             {fg = darkgrayeu}%
+%header colors
+\setbeamercolor{framelogo}           {bg=white}%
+\setbeamercolor{frametitle}          {bg=yelloweu, fg=black}%
+%footer colors
+\setbeamercolor{title in foot}     {fg=darkgrayeu, bg=lightgrayeu}
+\setbeamercolor{author in foot}        {fg=white, bg=grayeu}
+\setbeamercolor{pages in foot}        {fg=white, bg=grayeu}
+%items
+\setbeamercolor{itemize item}        {fg=yelloweu} %цвет пункта
+\setbeamercolor{itemize subitem}     {fg=yelloweu} %цвет подпункта
 % alert color
 \setbeamercolor{alerted text}{fg=alert}
 
 % blocks
-\setbeamercolor{block title}{use=structure,fg=white,bg=ugentblue}
-\setbeamercolor{block title alerted}{use=alerted text,fg=white,bg=ugentalert}
-\setbeamercolor{block title example}{use=example text,fg=white,bg=ugentexample}
+\setbeamercolor{block title}{use=structure,fg=yelloweu,bg=darkgrayeu}
+\setbeamercolor{block title alerted}{use=alerted text,fg=white,bg=alert}
+\setbeamercolor{block title example}{use=example text,fg=white,bg=example}
 
-\setbeamercolor{block body}        {fg=ugentblue,use=block title,bg=ugentblue!10!white}
-\setbeamercolor{block body alerted}{fg=ugentblue,use=block title alerted,bg=ugentalert!10!white}
-\setbeamercolor{block body example}{fg=ugentblue,use=block title example,bg=ugentexample!10!white}
+\setbeamercolor{block body}        {fg=darkgrayeu,use=block title,bg=darkgrayeu!10!white}
+\setbeamercolor{block body alerted}{fg=darkgrayeu,use=block title alerted,bg=alert!10!white}
+\setbeamercolor{block body example}{fg=darkgrayeu,use=block title example,bg=example!10!white}
 
 \mode
 <all>
-
-% \mode<presentation>
-
-% % Settings
-% \setbeamercolor*{title page header}{fg=white}
-% \setbeamercolor*{author}{fg=white}
-% \setbeamercolor*{date}{fg=white}
-% \setbeamercolor*{item}{fg=orange}
-
-% \mode
-% <all>

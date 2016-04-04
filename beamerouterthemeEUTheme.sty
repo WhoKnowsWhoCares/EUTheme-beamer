@@ -8,14 +8,13 @@
 % 1. under the LaTeX Project Public License and/or
 % 2. under the GNU Public License.
 
-% UGent page geometry
+% page geometry
 % \geometry{paperheight=7.5in,paperwidth=10.0in}
 % ... Hang on! As suggested in the manual, don't mess around with beamer's
 % assumed page dimensions (128mm x 96mm). Fonts, for example, do no get 
 % automatically scaled and will look tiny if the above is executed.
 % Instead, define a multiplier 12.8/(10.0*2.54) = 64/127 and adjust all
 % respective lengths.
-
 \RequirePackage{ifthen}
 
 \mode<presentation>
@@ -24,91 +23,63 @@
 \newlength\margin
 \setlength\margin{0.43cm}% 0.85cm * 64/127
 
-\newlength\bannerwidth
-\setlength\bannerwidth{11.94cm}% (10in - 2*0.85cm) * 64/127
-
-\newlength\bannertopmargin%
-\setlength\bannertopmargin{0.43cm}%  0.85cm * 64/127
-
-
 % images
-\pgfdeclareimage[width=3cm]{logo}{logoEU_07_eng}
-
-\ifbeamer@faculty
-  \pgfdeclareimage[width=\bannerwidth]{banner}{\beamer@facultyvalue-\beamer@languagevalue}
+\ifbeamer@language
+    \pgfdeclareimage[width=3cm]{CenterLogo}{./images/CenterLogoUE-\beamer@languagevalue}
 \else
-  \pgfdeclareimage[width=\bannerwidth]{banner}{banner}
+    \pgfdeclareimage[width=3cm]{CenterLogo}{./images/CenterLogoUE-rus}
 \fi
 
-
-% headline
-\defbeamertemplate*{headline}{EUTheme}%
-{%
-  \vskip\bannertopmargin%
-  \hskip\margin%
-%   \pgfuseimage{banner}%
-}
+\ifbeamer@language
+    \pgfdeclareimage[height=1cm]{Logo}{./images/LogoUE-\beamer@languagevalue}
+\else
+    \pgfdeclareimage[height=1cm]{Logo}{./images/LogoUE-rus}
+\fi
 
 % frametitle
 \defbeamertemplate*{frametitle}{EUTheme}
 {%
-  \vskip.2cm
-  \begin{beamercolorbox}[right]{frame title}%
-    \insertframetitle%
-  \end{beamercolorbox}%
+    \leavevmode%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=1.5cm,left]{framelogo}%
+    \hbox{%
+        \begin{beamercolorbox}[wd=0.7\paperwidth,ht=1cm,center]{frametitle}%
+            \usebeamerfont{subtitle}%
+            \insertframetitle%
+            \vskip1ex%
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=0.3\paperwidth,ht=1cm]{framelogo}%
+            \pgfuseimage{Logo}%
+            \hspace*{1ex}%
+        \end{beamercolorbox}%
+        \vfill%
+    }
+    \end{beamercolorbox}%  
 }
 
-% footline
-\defbeamertemplate*{footline}{EUTheme}
+\defbeamertemplate*{footline}{EUTheme}%
 {%
-  \ifbeamer@footline
-    \pgftext[bottom, left, at = \pgfpoint{0.02\paperwidth}{0.02\paperwidth}]{\insertinstitute}%
-    \pgftext[bottom, at = \pgfpoint{0.5\paperwidth}{0.02\paperwidth}]{\insertauthor}%
-  \fi
-  \ifbeamer@framenumber%
-    \ifnum\c@framenumber=1\else
-      \pgftext[bottom, right, at = \pgfpoint{0.96\paperwidth}{0.02\paperwidth}]{%
-        \usebeamerfont{frame number in foot}%
-        \usebeamercolor[fg]{frame number in foot}\insertframenumber{}%
-        \ifbeamer@totalframenumber%
-          /\inserttotalframenumber%
-        \fi
-      }%
-    \fi
-  \fi%
-}%
-
-% margins
-\setbeamersize{text margin left=2\margin,%
-               text margin right=2\margin}
-
-% background
-\defbeamertemplate*{background canvas}{EUTheme}
-{%
+    \ifbeamer@framenumber%
+    \ifnum\c@framenumber=1\else%
+    \leavevmode%
+    \hbox{%
+        \begin{beamercolorbox}[wd=.30\paperwidth,ht=2.5ex,dp=1.25ex,center]{author in foot}%
+            \hspace*{2ex}%
+            \usebeamerfont{title in head/foot}\insertshortauthor%
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.60\paperwidth,ht=2.5ex,dp=1.25ex,center]{title in foot}%
+            \hspace*{2ex}%
+            \insertshorttitle{}%
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.10\paperwidth,ht=2.5ex,dp=1.25ex,center]{pages in foot}%
+            \usebeamerfont{title in head/foot}
+            \insertframenumber{}/\inserttotalframenumber%
+        \end{beamercolorbox}
+    }%
+    \fi%
+    \fi%
 }
+
+\setbeamertemplate{blocks}[rounded]
 
 \mode
 <all>
-
-% \mode<presentation>
-
-% % Frame title
-% \defbeamertemplate*{frametitle}{EUTheme}[1][]
-% {
-% \vskip1cm%
-%   \begin{beamercolorbox}[wd=\paperwidth,ht=1.2cm]{frametitle} 
-%   \begin{tikzpicture}
-%   \useasboundingbox[fill=white](0,0) rectangle(\the\paperwidth,1.2);
-%   \fill[orange] (0,0) rectangle(2.95,1.2);
-%   \fill[blue!50!cyan!80] (3.05,0) rectangle(\the\paperwidth,1.2);
-%   \ifx\insertframesubtitle\@empty%
-%       {\node[anchor=west, white,font=\large] at (3.2,0.61){\insertframetitle};}
-%       \else%
-%       {\node[anchor= west, white,font=\large] at (3.2,0.81){\insertframetitle};%
-%       \node[anchor= west, white,font=\small] at (3.2,0.41){\insertframesubtitle};}%
-%       \fi
-%   \end{tikzpicture}
-%   \end{beamercolorbox}
-% }
-
-% \mode<all>
